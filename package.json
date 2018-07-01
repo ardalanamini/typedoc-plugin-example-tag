@@ -1,0 +1,44 @@
+{
+  "name": "typedoc-plugin-example-tag",
+  "version": "1.0.0",
+  "description": "typedoc @example tag plugin",
+  "author": "ardalan amini <ardalanamini22@gmail.com>",
+  "contributors": [
+    "ardalan amini <ardalanamini22@gmail.com>"
+  ],
+  "license": "MIT",
+  "keywords": [
+    "typescript",
+    "document",
+    "typedoc",
+    "plugin",
+    "example",
+    "tag"
+  ],
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "tsc",
+    "prepare": "npm run build",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "homepage": "https://github.com/ardalanamini/typedoc-plugin-example-tag#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ardalanamini/typedoc-plugin-example-tag.git"
+  },
+  "bugs": {
+    "url": "https://github.com/ardalanamini/typedoc-plugin-example-tag/issues"
+  },
+  "peerDependencies": {
+    "typedoc": ">=0.11.1 <1.0"
+  },
+  "devDependencies": {
+    "@types/node": "^10.5.1",
+    "tslint": "^5.10.0",
+    "typedoc": "^0.11.1",
+    "typescript": "^2.9.2"
+  },
+  "dependencies": {
+    "prototyped.js": "^0.10.1"
+  }
+}
