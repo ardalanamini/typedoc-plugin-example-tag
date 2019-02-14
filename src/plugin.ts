@@ -50,12 +50,18 @@ export class ExampleTagPlugin extends ConverterComponent {
       let counter = 0;
 
       indexes.forEach((index) => {
-        comment.text += `#### Example ${++counter}\n\`\`\`${this._prefLang}${comment.tags[index].text}\`\`\``;
+        comment.text += `#### Example ${
+          ++counter
+          }\n\`\`\`${
+          this._prefLang
+          }${
+          comment.tags ? comment.tags[index].text : ""
+          }\`\`\``;
         if (counter !== length)
           comment.text += `\n`;
       });
 
-      indexes.reverse().forEach((index) => comment.tags.splice(index));
+      indexes.reverse().forEach((index) => (comment.tags || []).splice(index));
     }
   }
 }
