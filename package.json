@@ -1,6 +1,6 @@
 {
   "name": "typedoc-plugin-example-tag",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "TypeDoc @example tag plugin",
   "author": "Ardalan Amini <ardalanamini22@gmail.com> (https://ardalanamini.com)",
   "license": "MIT",
