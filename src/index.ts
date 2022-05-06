@@ -9,7 +9,7 @@ export function load(app: Application) {
   });
 
   app.converter.on(Converter.EVENT_RESOLVE_BEGIN, (context: Context) => {
-    const preferredLanguage = app.options.getValue("preferred-example-language");
+    const preferredLanguage = app.options.getValue("preferred-example-language") as string;
 
     const reflections = context.project.getReflectionsByKind(ReflectionKind.All);
 
@@ -29,8 +29,8 @@ export function load(app: Application) {
       if (length === 1) {
         const index = indexes[0];
 
-        comment.text += `#### Example\n\`\`\`${preferredLanguage}${comment.tags[index].text}\`\`\``;
-        comment.tags.splice(index);
+        comment.text += prepareExample(preferredLanguage, comment.tags[index].text);
+        comment.tags.splice(index, 1);
 
         continue;
       }
@@ -38,12 +38,20 @@ export function load(app: Application) {
       let counter = 0;
 
       for (const index of indexes) {
-        comment.text += `#### Example ${++counter}\n\`\`\`${preferredLanguage}${comment.tags ? comment.tags[index].text : ""}\`\`\``;
+        comment.text += prepareExample(preferredLanguage, comment.tags[index].text, ++counter);
 
         if (counter !== length) comment.text += "\n";
       }
 
-      indexes.reverse().forEach((index) => comment.tags.splice(index));
+      indexes.reverse().forEach((index) => comment.tags.splice(index, 1));
     }
   });
+}
+
+function prepareExample(preferredLanguage: string, example: string, counter?: number): string {
+  if (!example.startsWith("\n")) example = `\n${example}`;
+
+  if (!example.endsWith("\n")) example += "\n";
+
+  return `#### Example${counter == null ? "" : ` ${counter}`}\n\`\`\`${preferredLanguage}${example}\`\`\``;
 }
